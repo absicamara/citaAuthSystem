@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-inverse">
 		  <div class="container-fluid">
 		    <!-- Brand and toggle get grouped for better mobile display -->
 		    <div class="navbar-header">
@@ -8,7 +8,7 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="navbar-brand" href="/php auth/public">APPLICATION</a>
+		      <a class="navbar-brand" href="/accounts">CITA - CALLCENTER</a>
 		    </div>
 
 		    <!-- Collect the nav links, forms, and other content for toggling -->
@@ -20,10 +20,19 @@
 		      </ul>
 		      
 		      <ul class="nav navbar-nav navbar-right">
-		        <li><a href="loginPage.php">Connexion</a></li>
-				<li><a href="#">Déconnexion</a></li>
-              	<li><a href="/php auth/public/adminCenter.php">Admin</a></li>
-              <li><a href="#">A-propos</a></li>
+                  <?php  if(!isset($_SESSION['loggedin'])) { ?>
+    		        <li><a href="loginPage.php">Connexion</a></li>
+                  <?php } ?>
+
+                  <?php  if(isset($_SESSION['loggedin']) && $_SESSION["loggedin"] === true) { ?>
+                      <?php if( $_SESSION["userRole"] === "admin") { ?>
+                        <li><a href="adminCenter.php">Admin</a></li>
+                      <?php } ?>
+                      <li><a href="logout.php">Se déconnecter</a></li>
+
+                  <?php } ?>
+
+              <li><a href="#">Aide</a></li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->

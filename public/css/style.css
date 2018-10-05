@@ -1,10 +1,31 @@
+
+
+#mainWrapper{
+    background: url("../img/bluebck.jpg");
+    color: white;
+}
+
+#citaAc{
+    font-size: 2em;
+}
+
+#formSizer{
+    width: 70%;
+    margin: 0 auto;
+}
+
+#whitePane{
+    min-height: 205px;
+    background: white;
+}
+
 .linkToModule{
 	width: 150px;
 }
 
 
 #displayContainer{
-	 width: 50%;
+    width: 100%;
     padding-bottom: 20px;
     margin: auto;
     padding-top: 20px;
