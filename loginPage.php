@@ -5,16 +5,16 @@
 
 <?php	require "inc/header.php"; ?>
 
-	<div class="container">
+	<div class="container-fluid">
 		
 		<?php	require "inc/navbar.php"; ?>
 
-		<div class="well">
+		<div id="mainWrapper" class="well">
 			<div class="row">
 				<div id="formContainer" class="col-md-4 col-md-offset-4">
 					<form action="#" method="post" autocomplete="off">
 						<div id="logo" style="text-align: center;" class="text-center">
-							<img  width="125px" src="public/img/logoPlaceholder.png">
+							<img  width="125px" src="public/img/logo_officiel.png">
 						</div>
 						<h2 class="text-center"> Connexion</h2>
 						<div class="form-group">
@@ -30,10 +30,10 @@
                             <span class="help-block text-danger"> <?php echo $password_err ?> </span>
                         </div>
 
-						<button class="btn btn-primary btn-lg"> Valider </button>
+						<button class="btn btn-default btn-md"> Valider </button>
 						<br>
 						<br>
-						<a href="#"> mot de passe oublié ?</a>
+<!--						<a href="#"> mot de passe oublié ?</a>-->
 					</form>
 				</div>
 			</div>

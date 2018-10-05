@@ -3,10 +3,20 @@
 #mainWrapper{
     background: url("../img/bluebck.jpg");
     color: white;
+    margin-bottom: 0;
 }
 
 #citaAc{
     font-size: 2em;
+}
+
+#loggedInAs{
+    background: rgba(0,0,0, 1);
+    height: 25px;
+    line-height: 25px;
+    margin-top: 0 ;
+    color: white;
+    padding-left: 5px;
 }
 
 #formSizer{

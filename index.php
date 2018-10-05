@@ -22,6 +22,7 @@
         <?php } ?>
 
 		<div id="mainWrapper" class="well">
+
 			<h1 class="text-center"> BIENVENUE SUR LA PLATEFORME CALL-CENTER </h1>
 
 			<p class="text-center">
@@ -36,7 +37,9 @@
 
             <marquee> <span id="citaAc"> CENTRE INTERNATIONAL DE TELECOMMUNICATIONS APPLIQUEES</span></marquee>
 		</div>
-
+        <div id="loggedInAs">
+            <span class="pull-">Utilisateur -> <?php echo strtoupper($_SESSION['fullname']); ?></span>
+        </div>
 	</div>
 
 		<?php	require "inc/footer.php"; ?>

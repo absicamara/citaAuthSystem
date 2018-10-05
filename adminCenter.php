@@ -1,7 +1,8 @@
 <?php
-    session_start();
+session_start();
 
 require"func/loggedInCheck.php";
+require "func/getUser.php";
 
 loggedCheck("admin");
 
@@ -17,14 +18,25 @@ loggedCheck("admin");
 		
 		<?php	require "inc/navbar.php"; ?>
 
+
         <?php if (!empty($_SESSION['flash']['danger'])){ ?>
-            <div class="alert alert-danger">
+
+        <div class="alert alert-danger">
+            <ul>
+                <li><?php echo $_SESSION['flash']['danger']; ?> </li>
+            </ul>
+        </div>
+        <?php unset($_SESSION{'flash'}); }?>
+
+        <?php if (!empty($_SESSION['flash']['success'])){ ?>
+
+            <div class="alert alert-success">
                 <ul>
-                    <li><?php echo $_SESSION['flash']['danger']; ?> </li>
+                    <li><?php echo $_SESSION['flash']['success']; ?> </li>
                 </ul>
             </div>
-            <?php unset($_SESSION{'flash'}); ?>
-        <?php } ?>
+            <?php unset($_SESSION{'flash'}); }?>
+
 
 		<div class="well" style="padding-right: 30px;">
 			
@@ -71,14 +83,14 @@ loggedCheck("admin");
 
                                 <div class="form-group">
                                     <!-- <label>Login</label> -->
-                                    <input type="text" name="fullName" class="form-control" placeholder="Nom & Prénom" >
+                                    <input type="text" name="fullName" class="form-control" placeholder="Nom & Prénom" required>
                                     <span class="help-block text-danger"> <?php echo $fullName_err ?> </span>
                                 </div>
 
 
                                 <div class="form-group">
                                     <!-- <label>Login</label> -->
-                                    <input type="text" name="email" class="form-control" placeholder="Email">
+                                    <input type="email" name="email" class="form-control" placeholder="Email" required>
                                     <span class="help-block text-danger"> <?php echo $email_err ?> </span>
                                 </div>
 
@@ -97,6 +109,63 @@ loggedCheck("admin");
 							</form>
                             </div>
 
+                        <?php } else if (!empty($_GET['opt']) AND $_GET['opt'] == "editUser") { ?>
+                            <div id="formSizer">
+
+                                <?php $data = getUser($_GET['userId']); ?>
+
+                                <form class="" action="updateUser.php" method="post" autocomplete="off">
+
+                                    <h2 class="text-center"> Modifier utilisateur</h2>
+                                    <input type="hidden" name="userId" value="<?php echo $_GET['userId']; ?>">
+                                    <div class="form-group">
+                                        <!-- <label>Login</label> -->
+                                        <label for="username"> Login</label>
+                                        <input type="text" name="username" class="form-control"  value="<?php echo $data['username']; ;?>" required>
+                                        <span class="help-block text-danger"> <?php echo $username_err ?> </span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="fullname"> Nom & Prénom</label>
+                                        <input type="text" name="fullName" class="form-control" value="<?php echo $data['fullname']; ;?>" required>
+                                        <span class="help-block text-danger"> <?php echo $fullName_err ?> </span>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="email"> Email </label>
+                                        <input type="email" name="email" class="form-control" value="<?php echo $data['email']; ;?>" required>
+                                        <span class="help-block text-danger"> <?php echo $email_err ?> </span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="tel"> Tel </label>
+                                        <input type="tel" name="tel" class="form-control" value="<?php echo $data['tel']; ;?>">
+                                        <span class="help-block text-danger"> <?php echo $tel_err ?> </span>
+                                    </div>
+                                    <fieldset>
+                                        <legend> Autorisation </legend>
+
+                                        <div class="form-group">
+                                            <label for="tel"> Niveau </label>
+                                            <select name="userRole" class="form-control" style="width: 50%">
+                                                <option value="user"> User </option>
+                                                <option value="admin"> admin </option>
+                                            </select>
+                                            <span> Niveau Actuel : <?php echo $data['userRole']; ?></span>
+                                        </div>
+                                    </fieldset>
+
+
+                                    <input type="submit" class="btn btn-success btn-md" value="Valider">
+                                    <a  class="btn btn-primary btn-md "> Réinitialiser mot de passe </a>
+                                        <a href="delUser.php?userId=<?php echo $data['id']; ?>" class="pull-right btn btn-danger btn-md"> Supprimer le compte </a>
+
+
+                                        <br>
+                                        <br>
+                                </form>
+                            </div>
 
 						<?php } else if (!empty($_GET['opt']) AND $_GET['opt'] == 2) { ?>
 
@@ -110,34 +179,45 @@ loggedCheck("admin");
                                 $rep = $pdo->query("SELECT id, username, fullname, email, tel FROM users");
 
                             ?>
+                        <table id="example" class="table table-striped table-bordered" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th class="text-center"> Login </th>
+                                <th class="text-center"> Nom & Prénom </th>
+                                <th class="text-center"> Email </th>
+                                <th class="text-center"> Tel </th>
+                                <th class="text-center"> Actions </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php while ($data = $rep->fetch()) { ?>
+                                <tr>
+                                    <td> <?php echo $data['username']; ?> </td>
+                                    <td> <?php echo $data['fullname']; ?> </td>
+                                    <td> <?php echo $data['email']; ?> </td>
+                                    <td> <?php echo $data['tel']; ?> </td>
+                                    <td>
+                                        <a href="delUser.php?userId=<?php echo $data['id']; ?>" class="btn btn-danger"> Supprimer </a>
+                                        <a href="adminCenter.php?opt=editUser&userId=<?php echo $data['id']; ?>" class="btn btn-success"> Modifier </a>
 
-                            <table class="table table-bordered table-striped table-responsive text-center ">
-                                <thead >
-                                    <th class="text-center"> Login </th>
-                                    <th class="text-center"> Nom & Prénom </th>
-                                    <th class="text-center"> Email </th>
-                                    <th class="text-center"> Tel </th>
-                                    <th class="text-center"> Actions </th>
-                                </thead>
-                                <?php while ($data = $rep->fetch()) { ?>
-                                    <tr>
-                                        <td> <?php echo $data['username']; ?> </td>
-                                        <td> <?php echo $data['fullname']; ?> </td>
-                                        <td> <?php echo $data['email']; ?> </td>
-                                        <td> <?php echo $data['tel']; ?> </td>
-                                        <td>
-                                            <a href="delUser.php?userId=<?php echo $data['id']; ?>" class="btn btn-danger"> Supprimer </a>
-                                            <a href="#" class="btn btn-success"> Modifier </a>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                            </tbody>
+                            <tfoot>
+                                <th class="text-center"> Login </th>
+                                <th class="text-center"> Nom & Prénom </th>
+                                <th class="text-center"> Email </th>
+                                <th class="text-center"> Tel </th>
+                                <th class="text-center"> Actions </th>
+                            </tfoot>
+                        </table>
 
-                                        </td>
-                                    </tr>
-                                <?php } ?>
-                            </table>
 
                         <?php } else if (!empty($_GET['opt']) AND $_GET['opt'] == 'failure') { ?>
                             <h1 class="text-center text-danger"> Une Erreur s'est produite !! </h1>
 						<?php } else{ ?>
-
+                            <h1 class="text-success text-center"> Bienvenue Admin !! </h1>
 						<?php } ?>
 						
 					</div>

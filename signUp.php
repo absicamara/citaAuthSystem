@@ -119,8 +119,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             // Attempt to execute the prepared statement
             if($stmt->execute()){
+
+                $_SESSION['flash']['success'] = "Utilisateur enregistré !!";
                 // Redirect to login page
-                header("location: adminCenter.php?opt=2");
+                header("location: adminCenter.php?opt=listUsers");
+                exit();
             } else{
                 echo "Une erreur s'est produite.";
             }

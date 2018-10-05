@@ -15,7 +15,7 @@
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      <ul class="nav navbar-nav">
 		        <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
-		        <!-- <li><a href="#">Accueil</a></li> -->
+
 		        
 		      </ul>
 		      
@@ -25,6 +25,7 @@
                   <?php } ?>
 
                   <?php  if(isset($_SESSION['loggedin']) && $_SESSION["loggedin"] === true) { ?>
+<!--                      <li><a href="#"><li>--><?php //echo $_SESSION['fullname']; ?><!--</li></a></li>-->
                       <?php if( $_SESSION["userRole"] === "admin") { ?>
                         <li><a href="adminCenter.php">Admin</a></li>
                       <?php } ?>
@@ -32,7 +33,7 @@
 
                   <?php } ?>
 
-              <li><a href="#">Aide</a></li>
+
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
