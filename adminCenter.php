@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require"func/loggedInCheck.php";
+require"inc/function.php";
 require "func/getUser.php";
 
 loggedCheck("admin");
@@ -19,23 +19,7 @@ loggedCheck("admin");
 		<?php	require "inc/navbar.php"; ?>
 
 
-        <?php if (!empty($_SESSION['flash']['danger'])){ ?>
-
-        <div class="alert alert-danger">
-            <ul>
-                <li><?php echo $_SESSION['flash']['danger']; ?> </li>
-            </ul>
-        </div>
-        <?php unset($_SESSION{'flash'}); }?>
-
-        <?php if (!empty($_SESSION['flash']['success'])){ ?>
-
-            <div class="alert alert-success">
-                <ul>
-                    <li><?php echo $_SESSION['flash']['success']; ?> </li>
-                </ul>
-            </div>
-            <?php unset($_SESSION{'flash'}); }?>
+        <?php require "inc/flashMessages.php"; ?>
 
 
 		<div class="well" style="padding-right: 30px;">
@@ -48,9 +32,7 @@ loggedCheck("admin");
 						<a class="list-group-item list-group-item-action active">  OPTIONS </a>
 						<a href="adminCenter.php?opt=addUser" class="list-group-item list-group-item-action">  Ajouter Utilisateurs </a>
 						<a href="adminCenter.php?opt=listUsers" class="list-group-item list-group-item-action">  List Utilisateurs </a>
-						
-						<a class="list-group-item list-group-item-action disabled"> Permissions </a>
-						<a class="list-group-item list-group-item-action disabled"> Paramètres </a>
+
 					</div>	
 				</div>
 				<div id="whitePane" class="col-md-8">
@@ -69,17 +51,7 @@ loggedCheck("admin");
                                     <span class="help-block text-danger"> <?php echo $username_err ?> </span>
 								</div>
 
-                                <div class="form-group">
-                                    <!-- <label>Mot de passe</label> -->
-                                    <input type="password" name="password" class="form-control" placeholder="Mot de passe" required>
-                                    <span class="help-block text-danger"> <?php echo $password_err ?> </span>
-                                </div>
 
-                                <div class="form-group">
-                                    <!-- <label>Confirmer Mot de passe</label> -->
-                                    <input type="password" name="confirm_password" class="form-control" placeholder="Confirmer le mot de passe" required>
-                                    <span class="help-block text-danger"> <?php echo $confirm_password_err ?> </span>
-                                </div>
 
                                 <div class="form-group">
                                     <!-- <label>Login</label> -->
@@ -158,7 +130,7 @@ loggedCheck("admin");
 
 
                                     <input type="submit" class="btn btn-success btn-md" value="Valider">
-                                    <a  class="btn btn-primary btn-md "> Réinitialiser mot de passe </a>
+                                    <a href="resetPass.php?userId=<?php echo $data['id']; ?>&usr=<?php echo $data['username']; ?>" class="btn btn-primary btn-md "> Réinitialiser mot de passe </a>
                                         <a href="delUser.php?userId=<?php echo $data['id']; ?>" class="pull-right btn btn-danger btn-md"> Supprimer le compte </a>
 
 

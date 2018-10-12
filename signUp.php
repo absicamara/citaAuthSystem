@@ -1,6 +1,7 @@
 <?php
 // Include config file
 require_once "inc/config.php";
+require_once "inc/function.php";
 
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = $fullName = $email = $tel = "";
@@ -40,23 +41,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     // Validate password
-    if(empty(trim($_POST["password"]))){
-        $password_err = "Please enter a password.";
-    } elseif(strlen(trim($_POST["password"])) < 6){
-        $password_err = "Password must have atleast 6 characters.";
-    } else{
-        $password = strip_tags(trim($_POST["password"]));
-    }
+//    if(empty(trim($_POST["password"]))){
+//        $password_err = "Entrez un mot de passe SVP.";
+//    } elseif(strlen(trim($_POST["password"])) < 8){
+//        $password_err = "Le mot de passe doit avoir au moins 8 characters.";
+//    } else{
+//        $password = strip_tags(trim($_POST["password"]));
+//    }
 
     // Validate confirm password
-    if(empty(trim($_POST["confirm_password"]))){
-        $confirm_password_err = "Please confirm password.";
-    } else{
-        $confirm_password = htmlspecialchars(trim($_POST["confirm_password"]));
-        if(empty($password_err) && ($password != $confirm_password)){
-            $confirm_password_err = "Password did not match.";
-        }
-    }
+//    if(empty(trim($_POST["confirm_password"]))){
+//        $confirm_password_err = "confirmez le mot de passe SVP.";
+//    } else{
+//        $confirm_password = htmlspecialchars(trim($_POST["confirm_password"]));
+//        if(empty($password_err) && ($password != $confirm_password)){
+//            $confirm_password_err = "La confirmation ne correspond pas";
+//        }
+//    }
 
     //validate fullName
 
@@ -96,10 +97,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     // Check input errors before inserting in database
-    if(empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($tel_err) && empty($fullName_err) && empty($email_err)){
+    if(empty($username_err) && empty($tel_err) && empty($fullName_err) && empty($email_err)){
 
         // Prepare an insert statement
-        $sql = "INSERT INTO users (username, password, fullname, email, tel) VALUES (:username, :password, :fullname, :email, :tel)";
+        $sql = "INSERT INTO users (username, password, fullname, email, tel, userRole, password_reset) VALUES (:username, :password, :fullname, :email, :tel, :userRole, :password_reset)";
 
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
@@ -108,19 +109,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $stmt->bindParam(":fullname", $param_fullname, PDO::PARAM_STR);
             $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
             $stmt->bindParam(":tel", $param_tel, PDO::PARAM_STR);
+            $stmt->bindParam(":userRole", $param_userRole, PDO::PARAM_STR);
+            $stmt->bindParam(":password_reset", $param_password_reset, PDO::PARAM_STR);
 
             // Set parameters
             $param_username = $username;
-            $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+            $gen_password = generatePass();
+            $param_password = password_hash($gen_password, PASSWORD_DEFAULT); // Creates a password hash
             $param_fullname = $fullName;
             $param_email = $email;
             $param_tel = $tel;
+            $param_userRole = "user";
+            $param_password_reset = 1;
 
 
             // Attempt to execute the prepared statement
             if($stmt->execute()){
 
-                $_SESSION['flash']['success'] = "Utilisateur enregistré !!";
+                // sending generated password to user mail
+                sendMail($param_email, " Mot de passe - ".$param_username, "Votre login est: ".$param_username."<br> Votre mot de passe est: ".$gen_password);
+                $_SESSION['flash']['success'] = "Utilisateur enregistré. Mot de passe envoyé par mail à l'utilisateur. !!";
                 // Redirect to login page
                 header("location: adminCenter.php?opt=listUsers");
                 exit();

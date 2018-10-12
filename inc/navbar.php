@@ -20,6 +20,8 @@
 		      </ul>
 		      
 		      <ul class="nav navbar-nav navbar-right">
+                  <li><a href="index.php">Accueil</a></li>
+
                   <?php  if(!isset($_SESSION['loggedin'])) { ?>
     		        <li><a href="loginPage.php">Connexion</a></li>
                   <?php } ?>

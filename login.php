@@ -35,7 +35,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT id, username, fullname, password, userRole FROM users WHERE username = :username";
+        $sql = "SELECT id, username, fullname, password, userRole, password_reset FROM users WHERE username = :username";
 
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
@@ -54,13 +54,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $hashed_password = $row["password"];
                         $fullname = $row['fullname'];
                         $userRole = $row['userRole'];
+                        $password_reset = $row['password_reset'];
+
                         if(password_verify($password, $hashed_password)){
                             // Password is correct, so start a new session
+
+                            //Checking if the password should be reset
                             session_start();
+                            $_SESSION["id"] = $id;
+
+                            if($password_reset == 1){
+                                //sending along new Password;
+                                $_SESSION['resetPaword'] = $password;
+                                header("location: passwordResetPage.php");
+
+                                exit();
+                            }
 
                             // Store data in session variables
+
                             $_SESSION["loggedin"] = true;
-                            $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;
                             $_SESSION["fullname"] = $fullname;
                             $_SESSION['userRole'] = $userRole;

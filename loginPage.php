@@ -9,6 +9,27 @@
 		
 		<?php	require "inc/navbar.php"; ?>
 
+        <?php if (!empty($_SESSION['flash']['danger'])){ ?>
+
+        <div class="alert alert-danger">
+            <ul>
+                <li><?php echo $_SESSION['flash']['danger']; ?> </li>
+            </ul>
+        </div>
+
+            <?php unset($_SESSION{'flash'}); }?>
+
+
+        <?php if (!empty($_SESSION['flash']['success'])){ ?>
+
+            <div class="alert alert-success">
+                <ul>
+                    <li><?php echo $_SESSION['flash']['success']; ?> </li>
+                </ul>
+            </div>
+
+            <?php unset($_SESSION{'flash'}); }?>
+
 		<div id="mainWrapper" class="well">
 			<div class="row">
 				<div id="formContainer" class="col-md-4 col-md-offset-4">
