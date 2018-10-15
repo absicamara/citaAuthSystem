@@ -28,8 +28,18 @@
 
                   <?php  if(isset($_SESSION['loggedin']) && $_SESSION["loggedin"] === true) { ?>
 <!--                      <li><a href="#"><li>--><?php //echo $_SESSION['fullname']; ?><!--</li></a></li>-->
+
+
+                      <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Applications <span class="caret"></span></a>
+                          <ul class="dropdown-menu">
+                              <li><a href="callCenterLanding.php">Call center</a></li>
+                              <li><a href="#">Pointage</a></li>
+
+                          </ul>
+                      </li>
                       <?php if( $_SESSION["userRole"] === "admin") { ?>
-                        <li><a href="adminCenter.php">Admin</a></li>
+                          <li><a href="adminCenter.php">Admin</a></li>
                       <?php } ?>
                       <li><a href="logout.php">Se déconnecter</a></li>
 

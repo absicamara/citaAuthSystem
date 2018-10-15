@@ -6,6 +6,19 @@
     margin-bottom: 0;
 }
 
+#mainWrapper2{
+    background: url("../img/callcenterbanner.png");
+    background-size:cover ;
+    color: white;
+    min-height: 350px;
+    max-height: 350px;
+    margin-bottom: 0;
+}
+
+#appLauncher{
+    margin-top: 220px;
+}
+
 #citaAc{
     font-size: 2em;
 }

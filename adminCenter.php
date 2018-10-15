@@ -14,7 +14,7 @@ loggedCheck("admin");
 
 ?>
 
-	<div class="container-fluid">
+	<div class="container">
 		
 		<?php	require "inc/navbar.php"; ?>
 
@@ -157,17 +157,15 @@ loggedCheck("admin");
                                 <th class="text-center"> Login </th>
                                 <th class="text-center"> Nom & Prénom </th>
                                 <th class="text-center"> Email </th>
-                                <th class="text-center"> Tel </th>
                                 <th class="text-center"> Actions </th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php while ($data = $rep->fetch()) { ?>
-                                <tr>
+                                <tr class="text-center">
                                     <td> <?php echo $data['username']; ?> </td>
                                     <td> <?php echo $data['fullname']; ?> </td>
-                                    <td> <?php echo $data['email']; ?> </td>
-                                    <td> <?php echo $data['tel']; ?> </td>
+                                    <td > <?php echo $data['email']; ?> </td>
                                     <td>
                                         <a href="delUser.php?userId=<?php echo $data['id']; ?>" class="btn btn-danger"> Supprimer </a>
                                         <a href="adminCenter.php?opt=editUser&userId=<?php echo $data['id']; ?>" class="btn btn-success"> Modifier </a>
@@ -180,7 +178,6 @@ loggedCheck("admin");
                                 <th class="text-center"> Login </th>
                                 <th class="text-center"> Nom & Prénom </th>
                                 <th class="text-center"> Email </th>
-                                <th class="text-center"> Tel </th>
                                 <th class="text-center"> Actions </th>
                             </tfoot>
                         </table>
