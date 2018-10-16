@@ -27,7 +27,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                 if($stmt->rowCount() == 1){
-                    $username_err = "This username is already taken.";
+                    $username_err = "Ce nom d'utilisateur est déjà prise.";
                 } else{
                     $username = htmlspecialchars(trim($_POST["username"]));
                 }
@@ -77,7 +77,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $email_err = "Veuillez renseigner ce champ";
     }else{
         if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $_POST['email'])){
-            $email = (string) htmlspecialchars(trim($_POST['email']));
+
+            // Prepare a select statement
+            $sql = "SELECT id FROM users WHERE email = :email";
+
+            if($stmt = $pdo->prepare($sql)){
+                // Bind variables to the prepared statement as parameters
+                $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
+
+                // Set parameters
+                $param_email = trim($_POST["email"]);
+
+                // Attempt to execute the prepared statement
+                if($stmt->execute()) {
+                    if ($stmt->rowCount() == 1) {
+                        $email_err = "Cette adresse mail est déjà utilisée.";
+                    } else {
+                        $email = (string) trim($_POST['email']);
+                    }
+                }
+            }
         }else{
             $email_err = "Format d'addresse mail non valide";
         }
