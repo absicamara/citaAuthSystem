@@ -12,6 +12,8 @@
     <link rel="stylesheet" type="text/css" href="public/css/lib/bootstrap3-3-7.min.css">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+	<!-- Linking google font -->
+    <link href="https://fonts.googleapis.com/css?family=Fahkwang|Francois+One|Lobster" rel="stylesheet">
 	<!-- Linking fontawesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 

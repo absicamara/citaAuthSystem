@@ -19,7 +19,7 @@ require "inc/header.php";
             <div class="col-md-12">
                 <?php	require "inc/navbar.php"; ?>
                 <?php require "inc/flashMessages.php"; ?>
-                <h1 class="text-center"> CALL CENTER </h1>
+                <h1 class="text-center" id="callCenterTitle"> CALL CENTER </h1>
 
                 <div id="mainWrapper2" class="well">
 
@@ -42,3 +42,21 @@ require "inc/header.php";
 
 
 <?php	require "inc/footer.php"; ?>
+<script type="text/javascript">
+    (function() {
+
+        var quotes = $("#callCenterTitle");
+        var quoteIndex = -1;
+
+        function showNextQuote() {
+            ++quoteIndex;
+            quotes.eq(quoteIndex % quotes.length)
+                .fadeIn(2000)
+                .delay(2000)
+                .fadeOut(2000, showNextQuote);
+        }
+
+        showNextQuote();
+
+    })();
+</script>

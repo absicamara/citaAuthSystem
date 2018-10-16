@@ -154,18 +154,18 @@ loggedCheck("admin");
                         <table id="example" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                             <tr>
-                                <th class="text-center"> Login </th>
+                                <th class="text-center hidden-xs hidden-sm"> Login </th>
                                 <th class="text-center"> Nom & Prénom </th>
-                                <th class="text-center"> Email </th>
+                                <th class="text-center hidden-xs hidden-sm"> Email </th>
                                 <th class="text-center"> Actions </th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php while ($data = $rep->fetch()) { ?>
                                 <tr class="text-center">
-                                    <td> <?php echo $data['username']; ?> </td>
+                                    <td class="hidden-xs hidden-sm"> <?php echo $data['username']; ?> </td>
                                     <td> <?php echo $data['fullname']; ?> </td>
-                                    <td > <?php echo $data['email']; ?> </td>
+                                    <td class="hidden-xs hidden-sm"> <?php echo $data['email']; ?> </td>
                                     <td>
                                         <a href="delUser.php?userId=<?php echo $data['id']; ?>" class="btn btn-danger"> Supprimer </a>
                                         <a href="adminCenter.php?opt=editUser&userId=<?php echo $data['id']; ?>" class="btn btn-success"> Modifier </a>
@@ -175,9 +175,9 @@ loggedCheck("admin");
                             <?php } ?>
                             </tbody>
                             <tfoot>
-                                <th class="text-center"> Login </th>
+                                <th class="text-center hidden-xs hidden-sm"> Login </th>
                                 <th class="text-center"> Nom & Prénom </th>
-                                <th class="text-center"> Email </th>
+                                <th class="text-center hidden-xs hidden-sm"> Email </th>
                                 <th class="text-center"> Actions </th>
                             </tfoot>
                         </table>
