@@ -11,7 +11,7 @@ define('USER_PWD', 'oserwjl8z8fqn7c6');
 
 try {
 	
-	$pdo = new PDO("mysql:host=".SERVER_NAME.";dbname=".DB_NAME, USER_NAME, USER_PWD);
+	$pdo = new PDO("mysql://t2e00zbnzvu26qt5:oserwjl8z8fqn7c6@jlg7sfncbhyvga14.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/y2v9pi0rf0z2u56o");
 
 	// Set ERRMODE attribue
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
