@@ -2,7 +2,7 @@
 session_start();
 
 require"inc/function.php";
-require "func/getUser.php";
+// require "func/getUser.php";
 
 loggedCheck("admin");
 

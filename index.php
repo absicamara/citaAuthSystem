@@ -8,7 +8,7 @@
 
     session_start(); // ready to go!
 
-    require"func/loggedInCheck.php";
+    require"inc/function.php";
 
     loggedCheck("user");
 

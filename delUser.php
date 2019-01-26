@@ -8,7 +8,7 @@ i<?php
 session_start();
 
 //Checking the userRole;
-require"func/loggedInCheck.php";
+require"inc/function.php";
 loggedCheck("admin");
 
 require_once "inc/config.php";
