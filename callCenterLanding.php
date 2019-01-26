@@ -21,11 +21,11 @@ require "inc/header.php";
                 <?php require "inc/flashMessages.php"; ?>
                 <h1 class="text-center" id="callCenterTitle"> CALL CENTER </h1>
 
-                <div id="mainWrapper2" class="well">
+                <div id="callCenter" class="well">
 
 
                     <div class="text-center " id="appLauncher">
-                        <a  href="callCenterLanding.php" class="btn btn-info linkToModule"> DEMARRER</a>
+                        <a  href="queue-stats/index.php" class="btn btn-info linkToModule"> DEMARRER</a>
                     </div>
 
 

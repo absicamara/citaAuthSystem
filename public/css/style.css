@@ -6,8 +6,19 @@
     margin-bottom: 0;
 }
 
-#mainWrapper2{
+#callCenter{
     background: url("../img/callcenterbanner.png");
+    background-size:cover ;
+    color: white;
+    min-height: 350px;
+    max-height: 350px;
+    margin-bottom: 0;
+}
+
+#timeChecker{
+    background: url("../img/time2.png");
+    background-size: contain;
+    background-position: center;
     background-size:cover ;
     color: white;
     min-height: 350px;

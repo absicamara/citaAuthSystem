@@ -5,7 +5,7 @@
 
 <?php	require "inc/header.php"; ?>
 
-	<div class="container-fluid">
+	<div class="container">
 		
 		<?php	require "inc/navbar.php"; ?>
 

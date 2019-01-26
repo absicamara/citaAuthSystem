@@ -38,7 +38,7 @@
 
                     <div class="text-center">
                         <a  href="callCenterLanding.php" class="btn btn-default linkToModule"> CALL-CENTER</a>
-                        <a  href="#" class="btn btn-default linkToModule"> POINTAGE</a>
+                        <a  href="timeCheckerLanding.php" class="btn btn-default linkToModule"> POINTAGE</a>
                     </div>
                     <br>
 

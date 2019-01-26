@@ -84,7 +84,7 @@ loggedCheck("admin");
                         <?php } else if (!empty($_GET['opt']) AND $_GET['opt'] == "editUser") { ?>
                             <div id="formSizer">
 
-                                <?php $data = getUser($_GET['userId']); ?>
+                                <?php $data = getOneUser($_GET['userId']); ?>
 
                                 <form class="" action="updateUser.php" method="post" autocomplete="off">
 

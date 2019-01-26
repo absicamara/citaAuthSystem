@@ -51,14 +51,15 @@ function loggedCheck($allowedRole = "admin"){
     }
 
     if(!isset($_SESSION['loggedin']) && $_SESSION["loggedin"] !== true) {
-        header("location: loginPage.php");
+        header("location: /cita/loginPage.php");
+        $_SESSION['flash']['danger'] = "Veuillez vous authentifier SVP";
         exit;
     }
 
     if ($allowedRole === "admin" AND $_SESSION['userRole'] !== "admin"){
 
         $_SESSION['flash']['danger'] = "Vous n'êtes pas autorisé à accéder à cette page";
-        header("Location: /accounts");
+        header("Location: /cita/index.php");
 
         exit();
     }
@@ -75,7 +76,7 @@ function sendMail($recipient, $subject, $body){
         $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
         $mail->SMTPAuth = true;                               // Enable SMTP authentication
         $mail->Username = 'absidevtest@gmail.com';                 // SMTP username
-        $mail->Password = 'absi0593';                           // SMTP password
+        $mail->Password = 'MoiJeDev2018';                           // SMTP password
         $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
         $mail->Port = 587;                                    // TCP port to connect to
 

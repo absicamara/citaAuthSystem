@@ -34,7 +34,7 @@
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Applications <span class="caret"></span></a>
                           <ul class="dropdown-menu">
                               <li><a href="callCenterLanding.php">Call center</a></li>
-                              <li><a href="#">Pointage</a></li>
+                              <li><a href="timeCheckerLanding.php">Pointage</a></li>
 
                           </ul>
                       </li>
