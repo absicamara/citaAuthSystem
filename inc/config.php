@@ -2,10 +2,10 @@
 
 // Define some contants
 
-define('SERVER_NAME', 'localhost');
-define('DB_NAME', 'mydb');
-define('USER_NAME', 'root');
-define('USER_PWD', '');
+define('SERVER_NAME', 'jlg7sfncbhyvga14.cbetxkdyhwsb.us-east-1.rds.amazonaws.com');
+define('DB_NAME', 'y2v9pi0rf0z2u56o');
+define('USER_NAME', 't2e00zbnzvu26qt5');
+define('USER_PWD', 'oserwjl8z8fqn7c6');
 
 // Try connecting to MSQL
 
