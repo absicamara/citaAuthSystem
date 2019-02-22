@@ -51,7 +51,7 @@ function loggedCheck($allowedRole = "admin"){
     }
 
     if(!isset($_SESSION['loggedin']) && $_SESSION["loggedin"] !== true) {
-        header("location: /cita/loginPage.php");
+        header("location: /loginPage.php");
         $_SESSION['flash']['danger'] = "Veuillez vous authentifier SVP";
         exit;
     }
@@ -59,7 +59,7 @@ function loggedCheck($allowedRole = "admin"){
     if ($allowedRole === "admin" AND $_SESSION['userRole'] !== "admin"){
 
         $_SESSION['flash']['danger'] = "Vous n'êtes pas autorisé à accéder à cette page";
-        header("Location: /cita/index.php");
+        header("Location: /index.php");
 
         exit();
     }
